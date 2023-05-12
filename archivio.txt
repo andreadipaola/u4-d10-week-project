@@ -1,4 +1,0 @@
-ISBN: 123456789, Titolo: Hello World, Anno: 1986, Pagine: 231, Autore: Andrea, Genere: Fantasy (LIBRO)
-ISBN: 234567891, Titolo: Indiana Jones e il tempio fantasma, Anno: 1987, Pagine: 321, Autore: Angelo, Genere: Avventura (LIBRO)
-ISBN: 345678912, Titolo: Il Piccolo Chimico, Anno: 1955, Pagine: 213, Autore: Romano, Genere: Manuale (LIBRO)
-ISBN: 456789123, Titolo: Laura non c'è, Anno: 1957, Pagine: 312, Autore: Anna, Genere: Romanzo (LIBRO)

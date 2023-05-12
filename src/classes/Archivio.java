@@ -22,18 +22,21 @@ public class Archivio {
 		boolean isRunning = true;
 
 		do {
-			System.out.println("-------------------------- Andrea's Bookstore --------------------------");
+//			System.out.println("-------------------------- Andrea's Bookstore --------------------------");
+			System.out.println("========================== Andrea's Bookstore ==========================");
 			System.out.println(" 1 MOSTRA ARCHIVIO");
 			System.out.println(" 2 AGGIUNGI UN OPERA");
-			System.out.println(" 3 RIMUOVI UN OPERA (fornisci l'isbn dell'opera che vuoi rimuovere)");
+			System.out.println(" 3 RIMUOVI UN OPERA (fornisci l'ISBN dell'opera che vuoi rimuovere)");
 			System.out.println(" 4 CERCA OPERA (fornisci l'ISBN dell'opera che vuoi cercare)");
 			System.out.println(" 5 CERCA OPERA (fornisci l'anno dell'opera che vuoi cercare)");
-			System.out.println(" 6 CERCA OPERA (fornisci l'anno dell'opera che vuoi cercare)");
+			System.out.println(" 6 CERCA OPERA (fornisci l'autore dell'opera che vuoi cercare)");
 			System.out.println(" 0 USCITA");
-			System.out.println("------------------------------------------------------------------------");
+//			System.out.println("------------------------------------------------------------------------");
+			System.out.println();
 			System.out.print("Seleziona una voce: ");
 			try {
 				int selezione = Integer.parseInt(scanner.nextLine());
+				System.out.println();
 				System.out.println("========================================================================");
 				System.out.println();
 				switch (selezione) {
@@ -42,11 +45,13 @@ public class Archivio {
 					break;
 				case (2):
 					System.out.println("---------------------------- Aggiungi Opera ----------------------------");
+					System.out.println();
 					System.out.println(" 1 AGGIUNGI LIBRO");
 					System.out.println(" 2 AGGIUNGI RIVISTA");
-					System.out.println("------------------------------------------------------------------------");
+					System.out.println();
 					System.out.print("Seleziona una voce: ");
 					int selezioneTipo = Integer.parseInt(scanner.nextLine());
+					System.out.println();
 					if (selezioneTipo == 1) {
 						aggiungiLibro();
 					} else if (selezioneTipo == 2) {
@@ -56,29 +61,33 @@ public class Archivio {
 					}
 					break;
 				case (3):
-					System.out.println("------- RIMUOVI OPERA -------");
-					System.out.println("Digita il codice ISBN dell'opera da rimuovere:");
+					System.out.println("---------------------------- Rimuovi Opera -----------------------------");
+					System.out.println();
+					System.out.print("Digita il codice ISBN dell'opera da rimuovere: ");
 					long isbnRimuovi = Long.parseLong(scanner.nextLine());
 					archivio.removeIf(linea -> linea.contains(Long.toString(isbnRimuovi)));
 					FileUtils.writeLines(file, archivio);
 					break;
 				case (4):
-					System.out.println("------- CERCA OPERA (ISBN) -------");
-					System.out.println("Digita il codice ISBN dell'opera da cercare:");
+					System.out.println("-------------------------- Cerca Opera (ISBN) --------------------------");
+					System.out.println();
+					System.out.print("Digita il codice ISBN dell'opera da cercare: ");
 					long cercaIsbn = Long.parseLong(scanner.nextLine());
 					archivio.stream().filter((b) -> b.contains(Long.toString(cercaIsbn)))
 							.forEach((o) -> System.out.println(o));
 					break;
 				case (5):
-					System.out.println("------- CERCA OPERA (ANNO DI PUBBLICAZIONE) -------");
-					System.out.println("Digita l'anno dell'opera da cercare:");
+					System.out.println("----------------- Cerca Opera (Anno di pubblicazione) ------------------");
+					System.out.println();
+					System.out.print("Digita l'anno dell'opera da cercare: ");
 					int cercaAnno = Integer.parseInt(scanner.nextLine());
 					archivio.stream().filter((b) -> b.contains(Integer.toString(cercaAnno)))
 							.forEach((o) -> System.out.println(o));
 					break;
 				case (6):
-					System.out.println("------- CERCA OPERA (AUTORE) -------");
-					System.out.println("Digita l'autore dell'opera da cercare:");
+					System.out.println("------------------------- Cerca Opera (Autore) -------------------------");
+					System.out.println();
+					System.out.print("Digita l'autore dell'opera da cercare: ");
 					String cercaAutore = scanner.nextLine();
 					archivio.stream().filter((b) -> b.contains(cercaAutore)).forEach((o) -> System.out.println(o));
 					break;
@@ -94,27 +103,26 @@ public class Archivio {
 				System.out.println("ERRORE IRREVERSIBILE: hai inserito una voce errata!!!");
 			}
 
-			System.out.println("Vuoi tornare al menu principale? (y/n)");
+			System.out.println("Vuoi tornare al menu principale? (Y/N)");
 			String input = scanner.nextLine();
 			isRunning = input.equalsIgnoreCase("y");
 
 		} while (isRunning);
 
 	}
-	// -----------------------------------------------------------------------------
 
 	public static void aggiungiLibro() {
-		System.out.println("- Inserisci ISBN: ");
+		System.out.println("Inserisci ISBN: ");
 		int isbn = Integer.parseInt(scanner.nextLine());
-		System.out.println("- Inserisci titolo: ");
+		System.out.println("Inserisci titolo: ");
 		String titolo = scanner.nextLine();
-		System.out.println("- Inserisci anno di pubblicazione: ");
+		System.out.println("Inserisci anno di pubblicazione: ");
 		int annoPubblicazione = Integer.parseInt(scanner.nextLine());
-		System.out.println("- Inserisci numero pagine: ");
+		System.out.println("Inserisci numero pagine: ");
 		int numeroPagine = Integer.parseInt(scanner.nextLine());
-		System.out.println("- Inserisci autore: ");
+		System.out.println("Inserisci autore: ");
 		String autore = scanner.nextLine();
-		System.out.println("- Inserisci genere: ");
+		System.out.println("Inserisci genere: ");
 		String genere = scanner.nextLine();
 
 		Libro libro = new Libro(isbn, titolo, annoPubblicazione, numeroPagine, autore, genere);
@@ -128,15 +136,14 @@ public class Archivio {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println();
 		System.out.println("Libro aggiunto correttamente!");
+		System.out.println();
 
 	}
 
-	// -----------------------------------------------------------------------------
-
 	public static void aggiungiRivista() {
-		System.out.println("- Inserisci ISBN: ");
+		System.out.println("Inserisci ISBN: ");
 		int isbn = Integer.parseInt(scanner.nextLine());
 		System.out.println("Inserisci titolo: ");
 		String titolo = scanner.nextLine();
@@ -144,9 +151,9 @@ public class Archivio {
 		int annoPubblicazione = Integer.parseInt(scanner.nextLine());
 		System.out.println("Inserisci numero pagine: ");
 		int numeroPagine = Integer.parseInt(scanner.nextLine());
-		System.out.println("1 - settimanale");
-		System.out.println("2 - mensile");
-		System.out.println("3 - semestrale");
+		System.out.println("1 - Settimanale");
+		System.out.println("2 - Mensile");
+		System.out.println("3 - Semestrale");
 		System.out.println("Inserisci periodicità: ");
 		int selezione = Integer.parseInt(scanner.nextLine());
 		Periodicita periodicita = null;
@@ -172,21 +179,19 @@ public class Archivio {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println();
 		System.out.println("Rivista aggiunta correttamente!");
+		System.out.println();
 	}
-
-	// -----------------------------------------------------------------------------
 
 	public static void salvaInArchivio(File f, String s, boolean append) throws IOException {
 		FileUtils.writeStringToFile(f, s, "UTF-8", append);
 	}
 
-	// -----------------------------------------------------------------------------
-
 	public static void leggiDaArchivio(File f) throws IOException {
 		if (file.exists()) {
 			System.out.printf("L'archivio della biblioteca contiente i seguenti testi: %n");
+			System.out.println();
 			System.out.println(FileUtils.readFileToString(f, "UTF-8"));
 
 		} else {
